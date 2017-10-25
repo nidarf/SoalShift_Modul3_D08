@@ -12,7 +12,7 @@ int length=157;
 void* factorial(void *arg)
 {
     //unsigned long i=0;
-    int n, i,t, val, j;
+    int n, i;
     unsigned long long factorial = 1;
     
     pthread_t id=pthread_self();
