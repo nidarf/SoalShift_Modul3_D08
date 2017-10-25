@@ -32,7 +32,7 @@ else if(pthread_equal(id,tid[2])==0){
 return NULL;
 }
  
-int main(void)
+int main(void) 
 {
    status[1]=100;
    status[2]=100;
