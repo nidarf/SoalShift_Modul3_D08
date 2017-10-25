@@ -53,8 +53,7 @@ int main(int a, int b, int c)
 {
     int i=0;
     int err,n;
-	printf("./factorial ");
-	scanf("%d %d %d", &n, &n, &n);
+	
     arr[0]=a;
     arr[1]=b;
     arr[2]=c;
