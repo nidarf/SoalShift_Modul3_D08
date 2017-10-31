@@ -5,44 +5,52 @@
 #include<unistd.h>
 #include<stdlib.h>
 
-pthread_t tid[2];
-int status[2];
-void* playandcount(void *arg)
+pthread_t tid1;
+pthread_t tid2;
+
+int status=0;
+int statusloh=100;
+int statuskep=100;
+
+void *loh(void *arg)
 {
-    pthread_t id=pthread_self();
-   if(pthread_equal (id,tid[1])==0){
-	int ikan;
-	while(status[1]>=1 && status[2]>=1 && status[1]<=100 && status[2]<=100){
-	printf("1. Beri Makan Lohan %d\n2. Beri Makan Kepiting %d\n", status[1], status[2]);
-	scanf("%d", &ikan);
-	if(ikan == 1) status[1]+=10;
-	else status[2]+=10;
-	sleep(1);
-        status[0]-=15;
-}
-printf("Gagal\n");
-} 
-else if(pthread_equal(id,tid[2])==0){
-  while(status[1]>=1 && status[2] >= 1 && status[1]<=100 && status[2]<=100){ 
-        sleep(1);
-        status[1]-=10;
+  while(statusloh<=100){
+  sleep(10);
+  statusloh-=15;
   }
 }
 
-return NULL;
-}
- 
-int main(void) 
+void *kep(void *arg)
 {
-   status[1]=100;
-   status[2]=100;
-   int i=0;
-   int err;
-   while(i<3){
-   	err=pthread_create(&(tid[i]),NULL,&playandcount, NULL);
-	i++;
+  while(statuskep<=100){
+  sleep(20);
+  statuskep-=10;
+  }
+}
+
+int main()
+{ 
+  
+
+  pthread_create(&(tid1), NULL, &loh, NULL);
+  pthread_create(&(tid2), NULL, &kep, NULL);
+
+  while(status!=1){
+  int ikan;
+  printf("Status Lohan %d\n", statusloh);
+  printf("Status Kepiting %d\n", statuskep);
+  printf("1. Beri Makan Lohan\n");
+  printf("2. Beri Makan Kepiting\n");
+  scanf("%d", &ikan);
+  if(ikan==1)
+  statusloh+=10;
+  else if(ikan==2)
+  statuskep+=10;
+
+   if(status == 1 || statusloh > 100 || statuskep > 100 || statusloh <= 0 || statuskep <= 0){
+  	printf("Gagal");
+	return 0;
    }
-pthread_join(tid[1],NULL);
-pthread_join(tid[2],NULL);
+  }
 return 0;
 }
