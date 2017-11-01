@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 	for(i=0; i<argc; i++){
 		pthread_join(tid[i], NULL);
 		}	
-return 0;
+return 0; 
 }
 
 
