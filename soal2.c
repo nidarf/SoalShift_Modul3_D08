@@ -89,3 +89,23 @@ void* start(void* arg){
 	}	
 }
 
+
+void* gameover(void* arg){
+	while(1){
+		while(stat!=1){}
+		if(skor1>=10||skor2>=10){
+			printf("\n------------------GAMEOVER-------------------\n");
+			exit(0);
+		}
+		else stat=0;
+	}
+
+int main(){
+	
+	pthread_create(&(tid1),NULL,&start,NULL);
+	pthread_create(&(tid2),NULL,&gameover,NULL);
+	
+	pthread_join(tid1,NULL);
+	pthread_join(tid2,NULL);
+	
+}
