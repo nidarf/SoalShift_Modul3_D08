@@ -98,14 +98,38 @@ void* gameover(void* arg){
 			exit(0);
 		}
 		else stat=0;
+	}	
+}
+
+void* cek(void* arg){
+	int i,a,b;
+	while(1){
+		a=0;
+		b=0;
+		while(stat!=1){}
+		for(i=0;i<16;i++){
+			if(land[0][i]=='x') 
+			a++;
+
+			if(land[1][i]=='x') 
+			b++;
+		}
+		if(a==16&&b==16){
+			printf("\n------------------GAMEOVER-------------------\n");
+			exit(0);
+		}
+		else stat=0;
 	}
+}
 
 int main(){
 	
 	pthread_create(&(tid1),NULL,&start,NULL);
 	pthread_create(&(tid2),NULL,&gameover,NULL);
+	pthread_create(&(tid3),NULL,&cek,NULL);
 	
 	pthread_join(tid1,NULL);
 	pthread_join(tid2,NULL);
+	pthread_join(tid3,NULL);
 	
 }
