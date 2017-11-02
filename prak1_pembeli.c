@@ -41,8 +41,6 @@ while(1){
 ;			}
  			else {printf("Stock tidak cukup\n");}
 		  } 
-		  /*else{ 
-			printf("Senjata %s tidak dijual\n", command);}*/
 		}
 	}		
 	else{ 
@@ -53,27 +51,5 @@ for(int i =1;i<=6;i++){
 	 shmctl(shmid[i], IPC_RMID, NULL);
 }
 return 0;
-}		
+}
 
-/*
-		if((strcmp(command,"MP4A1")==0)||(strcmp(command,"PM2-V1")==0)||(strcmp(command,"SPR-3")==0)||(strcmp(command,"SS2-V5")==0)||(strcmp(command,"SPG1-V3")==0)||(strcmp(command,"MINE")==0)){
-			if ((strcmp(command,"MP4A1")==0)&& *value[1]-jumlahsenjata>=0){
-			*value[1]-=jumlahsenjata;
-			printf("Sisa Stock %s = %d\n\n", command,*value[1]);
-			}else if ((strcmp(command,"PM2-V1")==0)&& *value[2]-jumlahsenjata>=0){
-			*value[2]-=jumlahsenjata;
-			printf("Sisa Stock %s = %d\n\n", command,*value[2]);
-			}else if ((strcmp(command,"SPR-3")==0)&& *value[3]-jumlahsenjata>=0){
-			*value[3]-=jumlahsenjata;
-			printf("Sisa Stock %s = %d\n\n", command,*value[3]);
-			}else if ((strcmp(command,"SS2-V5")==0)&& *value[4]-jumlahsenjata>=0){
-			*value[4]-=jumlahsenjata;
-			printf("Sisa Stock %s = %d\n\n", command,*value[4]);
-			}else if ((strcmp(command,"SPG1-V3")==0)&& *value[5]-jumlahsenjata>=0){
-			*value[5]-=jumlahsenjata;
-			printf("Sisa Stock %s = %d\n\n", command,*value[5]);
-			}else if ((strcmp(command,"MINE")==0)&& *value[6]-jumlahsenjata>=0){
-			*value[6]-=jumlahsenjata;
-			printf("Sisa Stock %s = %d\n\n", command,*value[6]);
-			}*/ 
-		 
