@@ -5,65 +5,30 @@
 #include<unistd.h>
 #include<stdlib.h>
 
-pthread_t tid[3];
-int arr[3];
-//int length=157;
+pthread_t tid[100];
+unsigned long i=0;
+int n;
 
-void* factorial(void *arg)
+void* factorial(int n)
 {
-    //unsigned long i=0;
-    int n, i;
+    int j;
     int factorial = 1;
-    
-    pthread_t id=pthread_self();
-    
-    if(pthread_equal(id,tid[0])==0)//thread untuk menjalankan counter
-    {
-	n=arr[0];
-        while(n>1){
-		factorial *= n;
-		n--;
-	}
-	printf("%d!= %d\n", arr[0], n);
+     
+    for(j=1;j<=n;j++){
+	    factorial *= j;
     }
-    
-    else if(pthread_equal(id,tid[1])==0)
-    {
-       n=arr[1];
-        while(n>1){
-		factorial *= n;
-		n--;
-	}
-	printf("%d!= %d\n", arr[1], n);
-    }
-
-    else if(pthread_equal(id,tid[2])==0)
-    {
-	n=arr[2];
-        while(n>1){
-		factorial *= n;
-		n--;
-	}
-	printf("%d!= %d\n", arr[2], n);
-	}
+	printf("Hasil %d! = %d\n\n", n, factorial);
+	
     return NULL;
 }
 
-int main(int a, int b, int c)
+int main()
 {
-    int i=0;
-    int err,n;
-	
-    arr[0]=a;
-    arr[1]=b;
-    arr[2]=c;
-    while(i<3)
+    while(scanf("%d", &n))
     {
-        err=pthread_create(&(tid[i]),NULL,&factorial,NULL);//membuat thread
-        i++;
+	    pthread_create(&tid[i],NULL,&factorial,n);
+	    
+	    pthread_join(tid[i],NULL);
+	    i++;
     }
-    pthread_join(tid[0],NULL);
-    pthread_join(tid[1],NULL);
-    pthread_join(tid[2],NULL);
-    return 0;
 }
